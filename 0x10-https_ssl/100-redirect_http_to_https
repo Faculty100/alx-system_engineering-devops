@@ -1,0 +1,22 @@
+frontend http_frontend
+    bind *:80
+    mode http
+    redirect scheme https code 301 if !{ ssl_fc }
+
+frontend https_frontend
+    bind *:443 ssl crt /path/to/ssl/certificate.pem
+    mode http
+    option httplog
+    option forwardfor
+    # Add your other configuration options for HTTPS traffic here
+    # ...
+
+    # Add your backend configuration here if needed
+    # ...
+
+backend backend_servers
+    mode http
+    # Add your backend server configuration here
+    # ...
+
+
